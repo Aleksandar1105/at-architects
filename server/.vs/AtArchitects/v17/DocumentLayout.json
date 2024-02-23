@@ -1,0 +1,89 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{98375587-32FF-4AB3-B725-BCC120028C0C}|AtArchitects.Domain\\AtArchitects.Domain.csproj|e:\\aleksandar\\coding\\at-architects\\server\\atarchitects\\atarchitects.domain\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98375587-32FF-4AB3-B725-BCC120028C0C}|AtArchitects.Domain\\AtArchitects.Domain.csproj|solutionrelative:atarchitects.domain\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98375587-32FF-4AB3-B725-BCC120028C0C}|AtArchitects.Domain\\AtArchitects.Domain.csproj|e:\\aleksandar\\coding\\at-architects\\server\\atarchitects\\atarchitects.domain\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98375587-32FF-4AB3-B725-BCC120028C0C}|AtArchitects.Domain\\AtArchitects.Domain.csproj|solutionrelative:atarchitects.domain\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98375587-32FF-4AB3-B725-BCC120028C0C}|AtArchitects.Domain\\AtArchitects.Domain.csproj|e:\\aleksandar\\coding\\at-architects\\server\\atarchitects\\atarchitects.domain\\models\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98375587-32FF-4AB3-B725-BCC120028C0C}|AtArchitects.Domain\\AtArchitects.Domain.csproj|solutionrelative:atarchitects.domain\\models\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98375587-32FF-4AB3-B725-BCC120028C0C}|AtArchitects.Domain\\AtArchitects.Domain.csproj|e:\\aleksandar\\coding\\at-architects\\server\\atarchitects\\atarchitects.domain\\models\\architect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98375587-32FF-4AB3-B725-BCC120028C0C}|AtArchitects.Domain\\AtArchitects.Domain.csproj|solutionrelative:atarchitects.domain\\models\\architect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Client.cs",
+              "DocumentMoniker": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects\\AtArchitects.Domain\\Models\\Client.cs",
+              "RelativeDocumentMoniker": "AtArchitects.Domain\\Models\\Client.cs",
+              "ToolTip": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects\\AtArchitects.Domain\\Models\\Client.cs",
+              "RelativeToolTip": "AtArchitects.Domain\\Models\\Client.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-23T13:02:05.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Architect.cs",
+              "DocumentMoniker": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects\\AtArchitects.Domain\\Models\\Architect.cs",
+              "RelativeDocumentMoniker": "AtArchitects.Domain\\Models\\Architect.cs",
+              "ToolTip": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects\\AtArchitects.Domain\\Models\\Architect.cs",
+              "RelativeToolTip": "AtArchitects.Domain\\Models\\Architect.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-23T12:35:24.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects\\AtArchitects.Domain\\Models\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "AtArchitects.Domain\\Models\\BaseEntity.cs",
+              "ToolTip": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects\\AtArchitects.Domain\\Models\\BaseEntity.cs",
+              "RelativeToolTip": "AtArchitects.Domain\\Models\\BaseEntity.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-23T12:16:30.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Project.cs",
+              "DocumentMoniker": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects\\AtArchitects.Domain\\Models\\Project.cs",
+              "RelativeDocumentMoniker": "AtArchitects.Domain\\Models\\Project.cs",
+              "ToolTip": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects\\AtArchitects.Domain\\Models\\Project.cs",
+              "RelativeToolTip": "AtArchitects.Domain\\Models\\Project.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-23T12:16:14.404Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
