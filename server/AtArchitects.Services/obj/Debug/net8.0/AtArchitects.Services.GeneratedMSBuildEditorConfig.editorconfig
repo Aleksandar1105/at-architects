@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AtArchitects.Services
-build_property.ProjectDir = E:\Aleksandar\coding\at-architects\server\AtArchitects.Services\
+build_property.ProjectDir = D:\4. ПРОГРАМИРАЊЕ\1.PROJECTS\at-architects\server\AtArchitects.Services\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

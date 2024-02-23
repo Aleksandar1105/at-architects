@@ -2903,23 +2903,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Aleksandar\\.nuget\\packages\\": {},
+    "C:\\Users\\acika\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects.Helpers\\AtArchitects.Helpers.csproj",
+      "projectUniqueName": "D:\\4. ПРОГРАМИРАЊЕ\\1.PROJECTS\\at-architects\\server\\AtArchitects.Helpers\\AtArchitects.Helpers.csproj",
       "projectName": "AtArchitects.Helpers",
-      "projectPath": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects.Helpers\\AtArchitects.Helpers.csproj",
-      "packagesPath": "C:\\Users\\Aleksandar\\.nuget\\packages\\",
-      "outputPath": "E:\\Aleksandar\\coding\\at-architects\\server\\AtArchitects.Helpers\\obj\\",
+      "projectPath": "D:\\4. ПРОГРАМИРАЊЕ\\1.PROJECTS\\at-architects\\server\\AtArchitects.Helpers\\AtArchitects.Helpers.csproj",
+      "packagesPath": "C:\\Users\\acika\\.nuget\\packages\\",
+      "outputPath": "D:\\4. ПРОГРАМИРАЊЕ\\1.PROJECTS\\at-architects\\server\\AtArchitects.Helpers\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Aleksandar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\acika\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
