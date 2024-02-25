@@ -6,6 +6,7 @@
         Commercial = 2,
         Education = 3,
         Health = 4,
-        Cultural = 5
+        Cultural = 5,
+        Warehouse = 6
     }
 }

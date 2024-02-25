@@ -9,5 +9,7 @@ namespace AtArchitects.Domain.Models
 
         [MaxLength(50)]
         public string LastName { get; set; } = string.Empty;
+
+        public List<ProjectReviews> ProjectReviews { get; set; } = [];
     }
 }

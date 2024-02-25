@@ -18,11 +18,15 @@
         [MaxLength(500)]
         public string Description { get; set; } = string.Empty;
 
+        public string Area { get; set; } = string.Empty;
+
         [MaxLength(100)]
         public string? ImageUrl { get; set; }
 
         [Required]
         public ProjectType ProjectType { get; set; }
+
+        public List<ProjectReviews> ProjectReviews { get; set; } = [];
 
         public Status Status { get; set; }
 

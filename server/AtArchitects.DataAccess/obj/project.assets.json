@@ -1583,6 +1583,19 @@
             "rid": "win"
           }
         }
+      },
+      "AtArchitects.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.2"
+        },
+        "compile": {
+          "bin/placeholder/AtArchitects.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AtArchitects.Domain.dll": {}
+        }
       }
     }
   },
@@ -4247,10 +4260,16 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "AtArchitects.Domain/1.0.0": {
+      "type": "project",
+      "path": "../AtArchitects.Domain/AtArchitects.Domain.csproj",
+      "msbuildProject": "../AtArchitects.Domain/AtArchitects.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "AtArchitects.Domain >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.2",
       "Microsoft.EntityFrameworkCore >= 8.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.2",
@@ -4290,7 +4309,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\4. ПРОГРАМИРАЊЕ\\1.PROJECTS\\at-architects\\server\\AtArchitects.Domain\\AtArchitects.Domain.csproj": {
+              "projectPath": "D:\\4. ПРОГРАМИРАЊЕ\\1.PROJECTS\\at-architects\\server\\AtArchitects.Domain\\AtArchitects.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
