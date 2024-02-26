@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class Architect : BaseEntity
+    public class Message : BaseEntity
     {
         [Required]
         [MaxLength(50)]
@@ -14,11 +14,17 @@
 
         [Required]
         [MaxLength(50)]
-        public string? Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
+        [Required]
         [MaxLength(50)]
-        public string? PhoneNumber { get; set; }
+        public string Subject { get; set; } = string.Empty;
 
-        public List<Project> Projects { get; set; } = [];
+        [Required]
+        [MaxLength(500)]
+        public string Content { get; set; } = string.Empty;
+
+        public User? User { get; set; }
+        public string? UserId { get; set; }
     }
 }

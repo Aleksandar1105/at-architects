@@ -30,7 +30,8 @@
 
         public Status Status { get; set; }
 
-        [ForeignKey("ArchitectId")]
         public Architect Architect { get; set; } = new();
+
+        public int ArcitectId { get; set; }
     }
 }

@@ -23,5 +23,7 @@
         public List<Project> Projects { get; set; } = [];
 
         public List<ProjectReviews> ProjectReviews { get; set; } = [];
+
+        public List<Message> Messages { get; set; } = [];
     }
 }
