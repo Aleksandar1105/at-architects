@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AtArchitects.Domain\AtArchitects.Domain.csproj" />
+    <ProjectReference Include="..\AtArchitects.DTOs\AtArchitects.DTOs.csproj" />
+  </ItemGroup>
+
 </Project>

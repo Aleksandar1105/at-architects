@@ -4,6 +4,6 @@
 
     public interface IProjectRepository : IRepository<Project>
     {
-        Task<List<ProjectReviews>> GetProductReviewsByProductIdAsync(int productId);
+        Task<List<ProjectReviews>> GetProjectReviewsByProjectIdAsync(int projectId);
     }
 }

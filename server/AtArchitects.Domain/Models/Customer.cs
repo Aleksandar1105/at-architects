@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace AtArchitects.Domain.Models
+﻿namespace AtArchitects.Domain.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class Customer : BaseUser
     {
         [MaxLength(50)]

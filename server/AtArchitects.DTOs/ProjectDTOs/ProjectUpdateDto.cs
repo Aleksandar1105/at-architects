@@ -1,9 +1,9 @@
-﻿namespace AtArchitects.Domain.Models
+﻿namespace AtArchitects.DTOs.ProjectDTOs
 {
     using AtArchitects.Domain.Enums;
     using System.ComponentModel.DataAnnotations;
 
-    public class Project : BaseEntity
+    public class ProjectUpdateDto
     {
         [Required]
         [MaxLength(50)]
@@ -25,11 +25,7 @@
         [Required]
         public ProjectType ProjectType { get; set; }
 
-        public List<ProjectReviews> ProjectReviews { get; set; } = [];
-
         public Status Status { get; set; }
-
-        public Architect Architect { get; set; } = new();
 
         public int ArchitectId { get; set; }
     }

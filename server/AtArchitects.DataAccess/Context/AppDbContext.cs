@@ -19,7 +19,7 @@
             modelBuilder.Entity<Architect>()
                 .HasMany(x => x.Projects)
                 .WithOne(x => x.Architect)
-                .HasForeignKey(x => x.ArcitectId);
+                .HasForeignKey(x => x.ArchitectId);
 
             modelBuilder.Entity<Project>()
                 .HasMany(x => x.ProjectReviews)
@@ -29,7 +29,7 @@
             modelBuilder.Entity<Project>()
                 .HasOne(x => x.Architect)
                 .WithMany(x => x.Projects)
-                .HasForeignKey(x => x.ArcitectId);
+                .HasForeignKey(x => x.ArchitectId);
 
             modelBuilder.Entity<ProjectReviews>()
                 .HasOne(x => x.User)

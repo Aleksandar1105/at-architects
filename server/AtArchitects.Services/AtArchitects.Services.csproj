@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AtArchitects.DataAccess\AtArchitects.DataAccess.csproj" />
+    <ProjectReference Include="..\AtArchitects.DTOs\AtArchitects.DTOs.csproj" />
+    <ProjectReference Include="..\AtArchitects.Mappers\AtArchitects.Mappers.csproj" />
+    <ProjectReference Include="..\AtArchitects.Shared\AtArchitects.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

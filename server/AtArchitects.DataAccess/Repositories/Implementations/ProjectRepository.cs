@@ -3,26 +3,26 @@
     using AtArchitects.DataAccess.Context;
     using AtArchitects.DataAccess.Repositories.Interfaces;
     using AtArchitects.Domain.Models;
+    using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public class ProjectRepository(AppDbContext dbContext) : IProjectRepository
     {
-        private readonly AppDbContext dbContext = dbContext;
 
         public Task AddAsync(Project entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var project = await dbContext.Projects.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public Task<List<Project>> GetAllAsync()
+        public async Task<List<Project>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await dbContext.Projects.ToListAsync();
         }
 
         public Task<Project> GetByIdAsync(int id)
@@ -30,7 +30,7 @@
             throw new NotImplementedException();
         }
 
-        public Task<List<ProjectReviews>> GetProductReviewsByProductIdAsync(int productId)
+        public Task<List<ProjectReviews>> GetProjectReviewsByProjectIdAsync(int projectId)
         {
             throw new NotImplementedException();
         }

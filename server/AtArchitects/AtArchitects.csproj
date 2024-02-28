@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AtArchitects.Helpers\AtArchitects.Helpers.csproj" />
+    <ProjectReference Include="..\AtArchitects.Services\AtArchitects.Services.csproj" />
   </ItemGroup>
 
 </Project>
