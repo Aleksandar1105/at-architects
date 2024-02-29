@@ -54,7 +54,7 @@
             var existingProject = await projectRepository.GetByIdAsync(id);
             if (existingProject == null) throw new ProjectNotFoundException(id);
 
-            ProjectMappers.AppluUpdateFromDto(projectUpdateDto, existingProject);
+            ProjectMappers.ApplyUpdateFromDto(projectUpdateDto, existingProject);
             await projectRepository.DeleteByIdAsync(id);
         }
     }

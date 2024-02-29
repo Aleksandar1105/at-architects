@@ -1,7 +1,11 @@
 ﻿namespace AtArchitects.Helpers
 {
     using AtArchitects.DataAccess.Context;
+    using AtArchitects.DataAccess.Repositories.Implementations;
+    using AtArchitects.DataAccess.Repositories.Interfaces;
     using AtArchitects.Domain.Models;
+    using AtArchitects.Services.Imlementations;
+    using AtArchitects.Services.Interfaces;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +21,16 @@
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
+        }
+
+        public static void InjectRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+        }
+
+        public static void InjectServices(this IServiceCollection services)
+        {
+            services.AddScoped<IProjectService, ProjectService>();
         }
     }
 }

@@ -18,16 +18,16 @@
             };
         }
 
-        public static Architect MapToArchitectModel(ArchitectDetailsDto architect)
-        {
-            return new Architect
-            {
-                FirstName = architect.FirstName,
-                LastName = architect.LastName,
-                Email = architect.Email,
-                PhoneNumber = architect.PhoneNumber,
-                Projects = architect.Projects.Select(ProjectMappers.MapToProjectModel).ToList()
-            };
-        }
+        //public static Architect MapToArchitectModel(ArchitectDetailsDto architect)
+        //{
+        //    return new Architect
+        //    {
+        //        FirstName = architect.FirstName,
+        //        LastName = architect.LastName,
+        //        Email = architect.Email,
+        //        PhoneNumber = architect.PhoneNumber,
+        //        Projects = architect.Projects.Select(ProjectMappers.MapToProjectModel).ToList()
+        //    };
+        //}
     }
 }

@@ -3,6 +3,7 @@
     using AtArchitects.DataAccess.Context;
     using AtArchitects.DataAccess.Repositories.Interfaces;
     using AtArchitects.Domain.Models;
+    using AtArchitects.Shared.Exceptions;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -10,14 +11,21 @@
     public class ProjectRepository(AppDbContext dbContext) : IProjectRepository
     {
 
-        public Task AddAsync(Project entity)
+        public async Task AddAsync(Project entity)
         {
-            throw new NotImplementedException();
+            await dbContext.Projects.AddAsync(entity);
+
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteByIdAsync(int id)
         {
-            var project = await dbContext.Projects.FirstOrDefaultAsync(p => p.Id == id);
+            var project = await dbContext.Projects.FirstOrDefaultAsync(p => p.Id == id)
+                ?? throw new ProjectNotFoundException(id);
+
+            dbContext.Projects.Remove(project);
+
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<List<Project>> GetAllAsync()
@@ -25,19 +33,22 @@
             return await dbContext.Projects.ToListAsync();
         }
 
-        public Task<Project> GetByIdAsync(int id)
+        public async Task<Project> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await dbContext.Projects.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public Task<List<ProjectReviews>> GetProjectReviewsByProjectIdAsync(int projectId)
+        public async Task<List<ProjectReviews>> GetProjectReviewsByProjectIdAsync(int projectId)
         {
-            throw new NotImplementedException();
+            return await dbContext.ProjectReviews
+                 .Where(p => p.Id == projectId)
+                 .ToListAsync();
         }
 
-        public Task UpdateAsync(Project entity)
+        public async Task UpdateAsync(Project entity)
         {
-            throw new NotImplementedException();
+            dbContext.Projects.Update(entity);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

@@ -31,6 +31,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.InjectDbContext(builder.Configuration.GetConnectionString("AtArchitectsDbString"));
+builder.Services.InjectRepositories();
+builder.Services.InjectServices();
 
 var app = builder.Build();
 

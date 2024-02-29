@@ -34,7 +34,7 @@
             };
         }
 
-        public static void AppluUpdateFromDto(ProjectUpdateDto projectUpdateDto, Project existingProject)
+        public static void ApplyUpdateFromDto(ProjectUpdateDto projectUpdateDto, Project existingProject)
         {
             existingProject.Name = projectUpdateDto.Name;
             existingProject.Location = projectUpdateDto.Location;

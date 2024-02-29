@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AtArchitects.DataAccess\AtArchitects.DataAccess.csproj" />
+    <ProjectReference Include="..\AtArchitects.Services\AtArchitects.Services.csproj" />
   </ItemGroup>
 
 </Project>
