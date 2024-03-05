@@ -1,5 +1,6 @@
 ﻿namespace AtArchitects.Domain.Models
 {
+    using AtArchitects.Domain.Enums;
     using System.ComponentModel.DataAnnotations;
 
     public class BaseUser : BaseEntity
@@ -18,7 +19,7 @@
 
         [Required]
         [MaxLength(30)]
-        public string Role { get; set; } = string.Empty;
+        public Roles Role { get; set; }
 
     }
 }

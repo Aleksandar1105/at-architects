@@ -4,7 +4,7 @@
     public class AdminUser : BaseUser
     {
         [MaxLength(50)]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } 
             
         public List<Project> Projects { get; set; } = [];
 

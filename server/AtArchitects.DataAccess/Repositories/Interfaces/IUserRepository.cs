@@ -2,5 +2,6 @@
 {
     public interface IUserRepository
     {
+        Task<int> CountByRole(string role);
     }
 }

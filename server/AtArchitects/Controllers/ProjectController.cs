@@ -4,19 +4,25 @@
     using AtArchitects.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using static System.Net.WebRequestMethods;
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectController(IProjectService projectService) : ControllerBase
+    public class ProjectController: ControllerBase
     {
+        private readonly IProjectService _projectService;
+
+        public ProjectController(IProjectService projectService)
+        {
+            _projectService = projectService;
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> GetAllProjects()
         {
             try
             {
-                var projects = await projectService.GetAllProjectsAsync();
+                var projects = await _projectService.GetAllProjectsAsync();
                 return Ok(projects);
             }
             catch (Exception ex)
@@ -34,7 +40,7 @@
 
             try
             {
-                var project = await projectService.GetProjectByIdAsync(id);
+                var project = await _projectService.GetProjectByIdAsync(id);
                 return Ok(project);
             }
             catch (Exception ex)
@@ -48,7 +54,7 @@
         {
             try
             {
-                var project = await projectService.CreateProjectAsync(projectCreateDto);
+                var project = await _projectService.CreateProjectAsync(projectCreateDto);
                 return Ok(project);
             }
             catch (Exception ex)
@@ -65,7 +71,7 @@
 
             try
             {
-                await projectService.UpdateProjectAsync(id, projectUpdateDto);
+                await _projectService.UpdateProjectAsync(id, projectUpdateDto);
                 return NoContent();
             }
             catch (Exception ex)
@@ -82,7 +88,7 @@
 
             try
             {
-                await projectService.DeleteProjectAsync(id);
+                await _projectService.DeleteProjectAsync(id);
                 return NoContent();
             }
             catch (Exception ex)
