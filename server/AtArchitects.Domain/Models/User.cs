@@ -1,5 +1,6 @@
 ﻿namespace AtArchitects.Domain.Models
 {
+    using AtArchitects.Domain.Enums;
     using Microsoft.AspNetCore.Identity;
     using System.ComponentModel.DataAnnotations;
 
@@ -18,7 +19,7 @@
         public string LastName { get; set; } = string.Empty;
 
         [MaxLength(20)]
-        public string Role { get; set; } = string.Empty;
+        public Roles Role { get; set; }
 
         public List<Project> Projects { get; set; } = [];
 

@@ -1,5 +1,6 @@
 ﻿namespace AtArchitects.Controllers
 {
+    using AtArchitects.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]

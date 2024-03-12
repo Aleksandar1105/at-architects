@@ -6,9 +6,9 @@
 
     public interface IAuthService
     {
-        Task RegisterCustomer(CustomerRegisterDto dto);
-        Task RegisterAdmin(AdminRegisterDto dto);
         Task<CustomerLoginResponseDto> LoginCustomer(UserLoginDto dto);
-        Task<CustomerLoginResponseDto> LoginSeller(UserLoginDto dto);
+        Task RegisterCustomer(CustomerRegisterDto dto);
+        Task<CustomerLoginResponseDto> LoginAdmin(UserLoginDto dto);
+        Task RegisterAdmin(AdminRegisterDto dto);
     }
 }

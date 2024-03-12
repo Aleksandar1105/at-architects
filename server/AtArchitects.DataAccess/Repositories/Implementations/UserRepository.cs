@@ -2,6 +2,7 @@
 {
     using AtArchitects.DataAccess.Context;
     using AtArchitects.DataAccess.Repositories.Interfaces;
+    using AtArchitects.Domain.Enums;
     using Microsoft.EntityFrameworkCore;
     using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@
         {
             _dbContext = dbContext;
         }
-        public Task<int> CountByRole(string role)
+        public Task<int> CountByRole(Roles role)
         {
             return _dbContext.Users.CountAsync(u => u.Role == role);
         }
