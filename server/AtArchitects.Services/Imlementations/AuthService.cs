@@ -1,11 +1,11 @@
 ﻿namespace AtArchitects.Services.Imlementations
 {
-    using AtArchitects.DataAccess.Repositories.Interfaces;
     using AtArchitects.Domain.Enums;
     using AtArchitects.Domain.Models;
     using AtArchitects.DTOs.AdminDTOs;
     using AtArchitects.DTOs.CustomerDTOs;
     using AtArchitects.DTOs.UserDTOs;
+    using AtArchitects.Mappers;
     using AtArchitects.Services.Interfaces;
     using AtArchitects.Shared.Exceptions;
     using Microsoft.AspNetCore.Identity;
@@ -15,19 +15,16 @@
     using System.Security.Claims;
     using System.Text;
     using System.Threading.Tasks;
-    using AtArchitects.Mappers;
 
     public class AuthService : IAuthService
     {
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
-        private readonly IUserRepository _userRepository;
 
-        public AuthService(UserManager<User> userManager, IConfiguration configuration, IUserRepository userRepository)
+        public AuthService(UserManager<User> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
-            _userRepository = userRepository;
         }
 
         public async Task<CustomerLoginResponseDto> LoginCustomer(UserLoginDto dto)
@@ -96,7 +93,7 @@
 
         public async Task RegisterAdmin(AdminRegisterDto dto)
         {
-            if(string.IsNullOrEmpty(dto.Username) || string.IsNullOrEmpty(dto.Password) || string.IsNullOrEmpty(dto.Email))
+            if (string.IsNullOrEmpty(dto.Username) || string.IsNullOrEmpty(dto.Password) || string.IsNullOrEmpty(dto.Email))
             {
                 throw new UserRegisterException("Username, password and email are required fields.");
             }
