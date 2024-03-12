@@ -16,6 +16,11 @@
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.ProjectReviews)
+                .WithOne(x => x.User)
+                .HasForeignKey(x => x.UserId);
+
             modelBuilder.Entity<Architect>()
                 .HasMany(x => x.Projects)
                 .WithOne(x => x.Architect)

@@ -51,7 +51,7 @@ namespace AtArchitects.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Architects");
+                    b.ToTable("Architects", (string)null);
                 });
 
             modelBuilder.Entity("AtArchitects.Domain.Models.Message", b =>
@@ -94,7 +94,7 @@ namespace AtArchitects.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Messages", (string)null);
                 });
 
             modelBuilder.Entity("AtArchitects.Domain.Models.NewsletterSubscriber", b =>
@@ -117,7 +117,7 @@ namespace AtArchitects.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NewsletterSubscribers");
+                    b.ToTable("NewsletterSubscribers", (string)null);
                 });
 
             modelBuilder.Entity("AtArchitects.Domain.Models.Project", b =>
@@ -169,7 +169,7 @@ namespace AtArchitects.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
                 });
 
             modelBuilder.Entity("AtArchitects.Domain.Models.ProjectReviews", b =>
@@ -199,7 +199,7 @@ namespace AtArchitects.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ProjectReviews");
+                    b.ToTable("ProjectReviews", (string)null);
                 });
 
             modelBuilder.Entity("AtArchitects.Domain.Models.User", b =>
