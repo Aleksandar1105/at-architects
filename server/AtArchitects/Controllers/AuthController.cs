@@ -1,96 +1,103 @@
 ﻿namespace AtArchitects.Controllers
 {
-    using AtArchitects.DTOs.AdminDTOs;
-    using AtArchitects.DTOs.CustomerDTOs;
     using AtArchitects.DTOs.UserDTOs;
     using AtArchitects.Services.Interfaces;
     using AtArchitects.Shared.Exceptions;
     using Microsoft.AspNetCore.Mvc;
-    using Serilog;
 
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, ILogger<AuthController> logger)
         {
             _authService = authService;
+            _logger = logger;
         }
 
-        [HttpPost("customer/register")]
-        public async Task<IActionResult> RegisterCustomer(CustomerRegisterDto customerRegisterDto)
+        [HttpPost("register/customer")]
+        public async Task<IActionResult> RegisterCustomer([FromBody] UserRegisterDto userRegisterDto)
         {
             try
             {
-                await _authService.RegisterCustomer(customerRegisterDto);
-                return StatusCode(StatusCodes.Status201Created, "Customer has been successfully registered.");
+                await _authService.RegisterCustomer(userRegisterDto);
+                _logger.LogInformation("User registered successfully: {Username}", userRegisterDto.Username);
+                return StatusCode(StatusCodes.Status201Created, $"{userRegisterDto.Username} has been successfully registered.");
             }
             catch (UserRegisterException ex)
             {
+                _logger.LogWarning("Registration failed: {Message}", ex.Message);
                 return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
-                Log.Error(ex.ToString());
+                _logger.LogError(ex, "Unexpected error during registration");
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
-        [HttpPost("customer/login")]
-        public async Task<ActionResult<CustomerLoginResponseDto>> LoginCustomer(UserLoginDto customerLoginDto)
+        [HttpPost("login/customer")]
+        public async Task<ActionResult<UserLoginResponseDto>> LoginCustomer(UserLoginDto userLoginDto)
         {
             try
             {
-                await _authService.LoginCustomer(customerLoginDto);
+                await _authService.LoginCustomer(userLoginDto);
+                _logger.LogInformation("User logged in successfully: {Username}", userLoginDto.Username);
                 return StatusCode(StatusCodes.Status200OK, "Customer has been successfully logged in.");
             }
-            catch (BadCredentialsException ex)
+            catch (BadCredentialsException)
             {
+                _logger.LogWarning("Login failed for {Username}: Bad credentials", userLoginDto.Username);
                 return BadRequest("Bad credentials.");
             }
             catch (Exception ex)
             {
-                Log.Error(ex.ToString());
+                _logger.LogError(ex, "Unexpected error during login for {Username}", userLoginDto.Username);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
-        [HttpPost("admin/register")]
-        public async Task<IActionResult> RegisterAdmin(AdminRegisterDto adminRegisterDto)
+        [HttpPost("register/admin")]
+        public async Task<IActionResult> RegisterAdmin([FromBody] UserRegisterDto userRegisterDto)
         {
             try
             {
-                await _authService.RegisterAdmin(adminRegisterDto);
-                return StatusCode(StatusCodes.Status201Created, "Admin has been successfully registered.");
+                await _authService.RegisterAdmin(userRegisterDto);
+                _logger.LogInformation("User registered successfully: {Username}", userRegisterDto.Username);
+                return StatusCode(StatusCodes.Status201Created, $"{userRegisterDto.Username} has been successfully registered.");
             }
             catch (UserRegisterException ex)
             {
+                _logger.LogWarning("Registration failed: {Message}", ex.Message);
                 return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
-                Log.Error(ex.ToString());
+                _logger.LogError(ex, "Unexpected error during registration");
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
-        [HttpPost("admin/login")]
-        public async Task<ActionResult<AdminLoginResponseDto>> LoginAdmin(UserLoginDto adminLoginDto)
+        [HttpPost("login/admin")]
+        public async Task<ActionResult<UserLoginResponseDto>> LoginAdmin(UserLoginDto userLoginDto)
         {
             try
             {
-                await _authService.LoginAdmin(adminLoginDto);
+                await _authService.LoginAdmin(userLoginDto);
+                _logger.LogInformation("User logged in successfully: {Username}", userLoginDto.Username);
                 return StatusCode(StatusCodes.Status200OK, "Admin has been successfully logged in.");
             }
-            catch (BadCredentialsException ex)
+            catch (BadCredentialsException)
             {
+                _logger.LogWarning("Login failed for {Username}: Bad credentials", userLoginDto.Username);
                 return BadRequest("Bad credentials.");
             }
             catch (Exception ex)
             {
-                Log.Error(ex.ToString());
+                _logger.LogError(ex, "Unexpected error during login for {Username}", userLoginDto.Username);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

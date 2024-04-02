@@ -51,11 +51,10 @@
 
         public async Task UpdateProjectAsync(int id, ProjectUpdateDto projectUpdateDto)
         {
-            var existingProject = await projectRepository.GetByIdAsync(id);
-            if (existingProject == null) throw new ProjectNotFoundException(id);
+            var existingProject = await projectRepository.GetByIdAsync(id) ?? throw new ProjectNotFoundException(id);
 
             ProjectMappers.ApplyUpdateFromDto(projectUpdateDto, existingProject);
-            await projectRepository.DeleteByIdAsync(id);
+            await projectRepository.UpdateAsync(existingProject);
         }
     }
 }

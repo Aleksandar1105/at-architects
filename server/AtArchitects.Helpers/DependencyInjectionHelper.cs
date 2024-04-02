@@ -15,10 +15,11 @@
         public static void InjectDbContext(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
-            services.AddIdentityCore<User>(options =>
-            {
-                options.SignIn.RequireConfirmedAccount = true;
-            })
+        }
+
+        public static void InjectIdentity(this IServiceCollection services)
+        {
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
         }

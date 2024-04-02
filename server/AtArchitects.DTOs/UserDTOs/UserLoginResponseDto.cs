@@ -1,8 +1,8 @@
-﻿namespace AtArchitects.DTOs.CustomerDTOs
+﻿namespace AtArchitects.DTOs.UserDTOs
 {
     using AtArchitects.Domain.Enums;
 
-    public class CustomerLoginResponseDto
+    public class UserLoginResponseDto
     {
         public string Id { get; set; }
         public string Username { get; set; }

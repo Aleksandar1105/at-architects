@@ -2,8 +2,6 @@
 {
     using AtArchitects.Domain.Enums;
     using AtArchitects.Domain.Models;
-    using AtArchitects.DTOs.AdminDTOs;
-    using AtArchitects.DTOs.CustomerDTOs;
     using AtArchitects.DTOs.UserDTOs;
     using AtArchitects.Mappers;
     using AtArchitects.Services.Interfaces;
@@ -27,7 +25,7 @@
             _configuration = configuration;
         }
 
-        public async Task<CustomerLoginResponseDto> LoginCustomer(UserLoginDto dto)
+        public async Task<UserLoginResponseDto> LoginCustomer(UserLoginDto dto)
         {
             User customer = await _userManager.FindByNameAsync(dto.Username);
 
@@ -41,10 +39,10 @@
             }
 
             string token = GenerateToken(customer);
-            return customer.ToCustomerLoginResponse(token);
+            return customer.ToUserLoginResponse(token);
 
         }
-        public async Task RegisterCustomer(CustomerRegisterDto dto)
+        public async Task RegisterCustomer(UserRegisterDto dto)
         {
             if (string.IsNullOrEmpty(dto.Username) || string.IsNullOrEmpty(dto.Password) || string.IsNullOrEmpty(dto.Email))
             {
@@ -70,10 +68,14 @@
                 Role = Roles.Customer
             };
 
-            await _userManager.CreateAsync(customer, dto.Password);
+            var result = await _userManager.CreateAsync(customer, dto.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(customer, dto.Role.ToString());
+            }
         }
 
-        public async Task<CustomerLoginResponseDto> LoginAdmin(UserLoginDto dto)
+        public async Task<UserLoginResponseDto> LoginAdmin(UserLoginDto dto)
         {
             User admin = await _userManager.FindByNameAsync(dto.Username);
 
@@ -88,10 +90,10 @@
             }
 
             string token = GenerateToken(admin);
-            return admin.ToCustomerLoginResponse(token);
+            return admin.ToUserLoginResponse(token);
         }
 
-        public async Task RegisterAdmin(AdminRegisterDto dto)
+        public async Task RegisterAdmin(UserRegisterDto dto)
         {
             if (string.IsNullOrEmpty(dto.Username) || string.IsNullOrEmpty(dto.Password) || string.IsNullOrEmpty(dto.Email))
             {
@@ -112,11 +114,16 @@
             {
                 UserName = dto.Username,
                 Email = dto.Email,
-                Name = dto.Name,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
                 Role = Roles.Admin
             };
 
-            await _userManager.CreateAsync(admin, dto.Password);
+            var result = await _userManager.CreateAsync(admin, dto.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(admin, dto.Role.ToString());
+            }
         }
 
 

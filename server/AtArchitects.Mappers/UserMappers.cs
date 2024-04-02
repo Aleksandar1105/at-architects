@@ -1,13 +1,13 @@
 ﻿namespace AtArchitects.Mappers
 {
     using AtArchitects.Domain.Models;
-    using AtArchitects.DTOs.CustomerDTOs;
+    using AtArchitects.DTOs.UserDTOs;
 
     public static class UserMappers
     {
-        public static CustomerLoginResponseDto ToCustomerLoginResponse(this User user, string token)
+        public static UserLoginResponseDto ToUserLoginResponse(this User user, string token)
         {
-            return new CustomerLoginResponseDto
+            return new UserLoginResponseDto
             {
                 Id = user.Id,
                 Email = user.Email,

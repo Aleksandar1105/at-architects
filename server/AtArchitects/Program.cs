@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using AtArchitects.Helpers;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
+using AtArchitects.Services.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +33,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.InjectDbContext(builder.Configuration.GetConnectionString("AtArchitectsDbString"));
+builder.Services.InjectIdentity();
 builder.Services.InjectRepositories();
 builder.Services.InjectServices();
 
@@ -49,5 +52,20 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+        await SeedHelper.SeedRolesAsync(roleManager); 
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
+    }
+}
 
 app.Run();
