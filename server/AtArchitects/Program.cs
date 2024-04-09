@@ -4,6 +4,7 @@ using AtArchitects.Helpers;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using AtArchitects.Services.Helpers;
+using AtArchitects.Domain.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;

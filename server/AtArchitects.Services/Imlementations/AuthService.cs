@@ -29,7 +29,7 @@
         {
             User customer = await _userManager.FindByNameAsync(dto.Username);
 
-            if (customer == null || customer.Role != Roles.Customer)
+            if (customer == null || !(await _userManager.IsInRoleAsync(customer, Roles.Customer.ToString())))
             {
                 throw new BadCredentialsException();
             }
@@ -77,9 +77,10 @@
 
         public async Task<UserLoginResponseDto> LoginAdmin(UserLoginDto dto)
         {
-            User admin = await _userManager.FindByNameAsync(dto.Username);
+            var admin = await _userManager.FindByNameAsync(dto.Username);
 
-            if (admin == null || admin.Role != Roles.Admin)
+
+            if (admin == null || !(await _userManager.IsInRoleAsync(admin, Roles.Admin.ToString())))
             {
                 throw new BadCredentialsException();
             }
@@ -122,6 +123,12 @@
             var result = await _userManager.CreateAsync(admin, dto.Password);
             if (result.Succeeded)
             {
+                var roleResult = await _userManager.AddToRoleAsync(admin, "Admin");
+                if (!roleResult.Succeeded)
+                {
+                    // Handle the error of adding to role
+                }
+
                 await _userManager.AddToRoleAsync(admin, dto.Role.ToString());
             }
         }
