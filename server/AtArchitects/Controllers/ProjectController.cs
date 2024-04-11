@@ -57,7 +57,7 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult> CreateProject([FromBody] ProjectCreateDto projectCreateDto)
         {
             try

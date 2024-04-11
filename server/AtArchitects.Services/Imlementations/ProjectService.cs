@@ -8,22 +8,28 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class ProjectService(IProjectRepository projectRepository) : IProjectService
+    public class ProjectService : IProjectService
     {
+        private readonly IProjectRepository _projectRepository;
+        public ProjectService(IProjectRepository projectRepository)
+        {
+            _projectRepository = projectRepository;
+        }
+
         public async Task<ProjectDetailsDto> CreateProjectAsync(ProjectCreateDto projectCreateDto)
         {
             var newProject = ProjectMappers.MapToProjectModel(projectCreateDto);
-            await projectRepository.AddAsync(newProject);
+            await _projectRepository.AddAsync(newProject);
             return ProjectMappers.MapToProjectDetailsDto(newProject);
         }
 
         public async Task DeleteProjectAsync(int id)
         {
-            var existingProject = await projectRepository.GetByIdAsync(id);
+            var existingProject = await _projectRepository.GetByIdAsync(id);
 
             if (existingProject != null)
             {
-                await projectRepository.DeleteByIdAsync(id);
+                await _projectRepository.DeleteByIdAsync(id);
             }
             else
             {
@@ -33,7 +39,7 @@
 
         public async Task<List<ProjectDetailsDto>> GetAllProjectsAsync()
         {
-            var projects = await projectRepository.GetAllAsync();
+            var projects = await _projectRepository.GetAllAsync();
 
             return projects != null
                 ? projects.Select(ProjectMappers.MapToProjectDetailsDto).ToList()
@@ -42,7 +48,7 @@
 
         public async Task<ProjectDetailsDto> GetProjectByIdAsync(int id)
         {
-            var project = await projectRepository.GetByIdAsync(id);
+            var project = await _projectRepository.GetByIdAsync(id);
 
             return project != null
                 ? ProjectMappers.MapToProjectDetailsDto(project)
@@ -51,10 +57,10 @@
 
         public async Task UpdateProjectAsync(int id, ProjectUpdateDto projectUpdateDto)
         {
-            var existingProject = await projectRepository.GetByIdAsync(id) ?? throw new ProjectNotFoundException(id);
+            var existingProject = await _projectRepository.GetByIdAsync(id) ?? throw new ProjectNotFoundException(id);
 
             ProjectMappers.ApplyUpdateFromDto(projectUpdateDto, existingProject);
-            await projectRepository.UpdateAsync(existingProject);
+            await _projectRepository.UpdateAsync(existingProject);
         }
     }
 }

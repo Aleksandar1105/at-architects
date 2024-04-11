@@ -90,7 +90,7 @@
                 throw new BadCredentialsException();
             }
 
-            string token = GenerateToken(admin);
+            string token =  GenerateToken(admin);
             return admin.ToUserLoginResponse(token);
         }
 
@@ -126,12 +126,40 @@
                 var roleResult = await _userManager.AddToRoleAsync(admin, "Admin");
                 if (!roleResult.Succeeded)
                 {
-                    // Handle the error of adding to role
+                    throw new UserRegisterException("Failed to add user to role.");
                 }
-
-                await _userManager.AddToRoleAsync(admin, dto.Role.ToString());
             }
         }
+
+        //    private async Task<string> GenerateToken(User user)
+        //    {
+        //        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+        //        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+
+        //        var roles = await _userManager.GetRolesAsync(user);
+        //        var roleClaims = roles.Select(role => new Claim(ClaimTypes.Role, role)).ToArray();
+
+        //        var claims = new List<Claim>
+        //{
+        //            new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+        //            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        //            new Claim("id", user.Id),
+        //            new Claim(ClaimTypes.NameIdentifier, user.UserName),
+        //            new Claim(ClaimTypes.Email, user.Email)
+        //};
+        //        claims.AddRange(roleClaims);
+
+        //        var tokenHandler = new JwtSecurityTokenHandler();
+        //        var tokenDescriptor = new SecurityTokenDescriptor
+        //        {
+        //            Subject = new ClaimsIdentity(claims),
+        //            Expires = DateTime.Now.AddMinutes(int.Parse(_configuration["Jwt:Expire"])),
+        //            SigningCredentials = credentials
+        //        };
+
+        //        var token = tokenHandler.CreateToken(tokenDescriptor);
+        //        return tokenHandler.WriteToken(token);
+        //    }
 
 
         private string GenerateToken(User user)
@@ -139,13 +167,14 @@
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
 
-            Claim[] claims = new Claim[]
-            {
+
+            Claim[] claims =
+            [
                 new Claim("id", user.Id.ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.UserName),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role.ToString()),
-            };
+            ];
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -158,5 +187,7 @@
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
+
     }
 }

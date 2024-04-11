@@ -46,7 +46,7 @@
             {
                 await _authService.LoginCustomer(userLoginDto);
                 _logger.LogInformation("User logged in successfully: {Username}", userLoginDto.Username);
-                return StatusCode(StatusCodes.Status200OK, "Customer has been successfully logged in.");
+                return StatusCode(StatusCodes.Status200OK, $"Customer with username {userLoginDto.Username} has been successfully logged in.");
             }
             catch (BadCredentialsException)
             {
@@ -88,7 +88,7 @@
             {
                 await _authService.LoginAdmin(userLoginDto);
                 _logger.LogInformation("User logged in successfully: {Username}", userLoginDto.Username);
-                return StatusCode(StatusCodes.Status200OK, "Admin has been successfully logged in.");
+                return StatusCode(StatusCodes.Status200OK, $"Admin with username {userLoginDto.Username} has been successfully logged in.");
             }
             catch (BadCredentialsException)
             {

@@ -22,5 +22,7 @@
         public List<ProjectReviews> ProjectReviews { get; set; } = [];
 
         public List<Message> Messages { get; set; } = [];
+
+        public ICollection<UserProject> UserProjects { get; set; }
     }
 }

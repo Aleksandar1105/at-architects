@@ -32,5 +32,9 @@
         public Architect Architect { get; set; } = new();
 
         public int ArchitectId { get; set; }
+
+        public ICollection<UserProject> UserProjects { get; set; }
+
+        public ICollection<ProjectArchitect> ProjectArchitects { get; set; }
     }
 }

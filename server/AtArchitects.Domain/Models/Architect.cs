@@ -20,5 +20,7 @@
         public string? PhoneNumber { get; set; }
 
         public List<Project> Projects { get; set; } = [];
+
+        public ICollection<ProjectArchitect> ProjectArchitects { get; set; }
     }
 }
