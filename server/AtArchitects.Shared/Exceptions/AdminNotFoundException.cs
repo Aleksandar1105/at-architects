@@ -1,4 +1,7 @@
 ﻿namespace AtArchitects.Shared.Exceptions
 {
-    public class AdminNotFoundException(string id) : Exception($"Project with id:[{id}] was not found.") { }
+    public class AdminNotFoundException : Exception
+    {
+        public AdminNotFoundException(string id) : base($"Admin with id:[{id}] was not found.") { }
+    }
 }

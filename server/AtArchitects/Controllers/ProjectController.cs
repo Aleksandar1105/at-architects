@@ -57,7 +57,7 @@
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Architect")]
         public async Task<ActionResult> CreateProject([FromBody] ProjectCreateDto projectCreateDto)
         {
             try
@@ -74,7 +74,7 @@
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Architect")]
         public async Task<ActionResult> UpdateProject(int id, [FromBody] ProjectUpdateDto projectUpdateDto)
         {
             if (id <= 0 || !ModelState.IsValid)

@@ -29,6 +29,10 @@
                 .HasForeignKey(x => x.ArchitectId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Architect>()
+                .Property(a => a.Email)
+                .IsRequired();
+
             modelBuilder.Entity<Project>()
                 .HasMany(x => x.ProjectReviews)
                 .WithOne(x => x.Project)

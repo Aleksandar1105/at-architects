@@ -42,7 +42,7 @@
             return customer.ToUserLoginResponse(token);
 
         }
-        public async Task RegisterCustomer(UserRegisterDto dto)
+        public async Task<UserLoginResponseDto> RegisterCustomer(UserRegisterDto dto)
         {
             if (string.IsNullOrEmpty(dto.Username) || string.IsNullOrEmpty(dto.Password) || string.IsNullOrEmpty(dto.Email))
             {
@@ -69,10 +69,16 @@
             };
 
             var result = await _userManager.CreateAsync(customer, dto.Password);
-            if (result.Succeeded)
+
+            if (!result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(customer, dto.Role.ToString());
+                throw new UserRegisterException("Failed to create user.");
             }
+
+            await _userManager.AddToRoleAsync(customer, Roles.Customer.ToString());
+
+            string token = GenerateToken(customer);
+            return customer.ToUserLoginResponse(token);
         }
 
         public async Task<UserLoginResponseDto> LoginAdmin(UserLoginDto dto)
@@ -90,11 +96,11 @@
                 throw new BadCredentialsException();
             }
 
-            string token =  GenerateToken(admin);
+            string token = GenerateToken(admin);
             return admin.ToUserLoginResponse(token);
         }
 
-        public async Task RegisterAdmin(UserRegisterDto dto)
+        public async Task<UserLoginResponseDto> RegisterAdmin(UserRegisterDto dto)
         {
             if (string.IsNullOrEmpty(dto.Username) || string.IsNullOrEmpty(dto.Password) || string.IsNullOrEmpty(dto.Email))
             {
@@ -121,14 +127,16 @@
             };
 
             var result = await _userManager.CreateAsync(admin, dto.Password);
-            if (result.Succeeded)
+
+            if (!result.Succeeded)
             {
-                var roleResult = await _userManager.AddToRoleAsync(admin, "Admin");
-                if (!roleResult.Succeeded)
-                {
-                    throw new UserRegisterException("Failed to add user to role.");
-                }
+                throw new UserRegisterException("Failed to create user.");
             }
+
+            await _userManager.AddToRoleAsync(admin, Roles.Admin.ToString());
+
+            string token = GenerateToken(admin);
+            return admin.ToUserLoginResponse(token);
         }
 
         //    private async Task<string> GenerateToken(User user)

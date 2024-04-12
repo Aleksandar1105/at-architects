@@ -19,7 +19,6 @@
         public async Task AddAsync(Project entity)
         {
             await _dbContext.Projects.AddAsync(entity);
-
             await _dbContext.SaveChangesAsync();
         }
 
@@ -29,7 +28,6 @@
                 ?? throw new ProjectNotFoundException(id);
 
             _dbContext.Projects.Remove(project);
-
             await _dbContext.SaveChangesAsync();
         }
 

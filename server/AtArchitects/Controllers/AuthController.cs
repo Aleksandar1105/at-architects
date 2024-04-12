@@ -19,13 +19,13 @@
         }
 
         [HttpPost("register/customer")]
-        public async Task<IActionResult> RegisterCustomer([FromBody] UserRegisterDto userRegisterDto)
+        public async Task<ActionResult<UserLoginResponseDto>> RegisterCustomer([FromBody] UserRegisterDto userRegisterDto)
         {
             try
             {
-                await _authService.RegisterCustomer(userRegisterDto);
-                _logger.LogInformation("User registered successfully: {Username}", userRegisterDto.Username);
-                return StatusCode(StatusCodes.Status201Created, $"{userRegisterDto.Username} has been successfully registered.");
+                var loginResponse = await _authService.RegisterCustomer(userRegisterDto);
+                _logger.LogInformation("User registered and logged in successfully: {Username}", userRegisterDto.Username);
+                return Ok(loginResponse);
             }
             catch (UserRegisterException ex)
             {
@@ -61,13 +61,13 @@
         }
 
         [HttpPost("register/admin")]
-        public async Task<IActionResult> RegisterAdmin([FromBody] UserRegisterDto userRegisterDto)
+        public async Task<ActionResult<UserLoginResponseDto>> RegisterAdmin([FromBody] UserRegisterDto userRegisterDto)
         {
             try
             {
-                await _authService.RegisterAdmin(userRegisterDto);
-                _logger.LogInformation("User registered successfully: {Username}", userRegisterDto.Username);
-                return StatusCode(StatusCodes.Status201Created, $"{userRegisterDto.Username} has been successfully registered.");
+                var loginResponse = await _authService.RegisterAdmin(userRegisterDto);
+                _logger.LogInformation("User registered and logged in successfully: {Username}", userRegisterDto.Username);
+                return Ok(loginResponse);
             }
             catch (UserRegisterException ex)
             {

@@ -26,5 +26,9 @@
         public ProjectType ProjectType { get; set; }
 
         public int ArchitectId { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
     }
 }
