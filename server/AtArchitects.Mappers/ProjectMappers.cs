@@ -20,17 +20,17 @@
             };
         }
 
-        public static Project MapToProjectModel(ProjectCreateDto project)
+        public static Project MapToProjectModel(ProjectCreateDto projectCreateDto)
         {
             return new Project
             {
-                Name = project.Name,
-                Location = project.Location,
-                Description = project.Description,
-                Area = project.Area,
-                ImageUrl = project.ImageUrl,
-                ProjectType = project.ProjectType,
-                ArchitectId = project.ArchitectId
+                Name = projectCreateDto.Name,
+                Location = projectCreateDto.Location,
+                Description = projectCreateDto.Description,
+                Area = projectCreateDto.Area,
+                ImageUrl = projectCreateDto.ImageUrl,
+                ProjectType = projectCreateDto.ProjectType,
+                ArchitectId = projectCreateDto.ArchitectId
             };
         }
 

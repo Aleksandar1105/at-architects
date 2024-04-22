@@ -1,5 +1,6 @@
 ﻿namespace AtArchitects.DTOs.ArchitectDTOs
 {
+    using AtArchitects.Domain.Models;
     using System.ComponentModel.DataAnnotations;
 
     public class ArchitectUpdateDto

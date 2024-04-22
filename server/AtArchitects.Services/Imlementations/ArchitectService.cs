@@ -1,7 +1,8 @@
 ﻿using AtArchitects.DataAccess.Repositories.Interfaces;
 using AtArchitects.DTOs.ArchitectDTOs;
-using AtArchitects.Services.Interfaces;
 using AtArchitects.Mappers;
+using AtArchitects.Services.Interfaces;
+using AtArchitects.Shared.Exceptions;
 
 namespace AtArchitects.Services.Imlementations
 {
@@ -15,27 +16,49 @@ namespace AtArchitects.Services.Imlementations
 
         public async Task<ArchitectDetailsDto> AddArchitectAsync(ArchitectCreateDto architectCreateDto)
         {
-            throw new NotImplementedException();
+            var newArchitect = ArchitectMappers.MapToArchitectModel(architectCreateDto);
+            await _architectRepository.AddAsync(newArchitect);
+            return ArchitectMappers.MapToArchitectDetailsDto(newArchitect);
         }
 
-        public Task DeleteArchitectAsync(int id)
+        public async Task DeleteArchitectAsync(int id)
         {
-            throw new NotImplementedException();
+            var existingArchitect = await _architectRepository.GetByIdAsync(id);
+
+            if (existingArchitect != null)
+            {
+                _architectRepository.DeleteByIdAsync(id);
+            }
+            else
+            {
+                throw new ArchitectNotFoundException(id);
+            }
         }
 
-        public Task<List<ArchitectDetailsDto>> GetAllArchitectsAsync()
+        public async Task<List<ArchitectDetailsDto>> GetAllArchitectsAsync()
         {
-            throw new NotImplementedException();
+            var architects = await _architectRepository.GetAllAsync();
+
+            return architects != null
+                ? architects.Select(ArchitectMappers.MapToArchitectDetailsDto).ToList()
+                : [];
         }
 
-        public Task<ArchitectDetailsDto> GetArchitectByIdAsync(int id)
+        public async Task<ArchitectDetailsDto> GetArchitectByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var architect =await _architectRepository.GetByIdAsync(id);
+
+            return architect != null
+                ? ArchitectMappers.MapToArchitectDetailsDto(architect)
+                : throw new ArchitectNotFoundException(id);
         }
 
-        public Task UpdateArchitectAsync(int id, ArchitectUpdateDto architectUpdateDto)
+        public async Task UpdateArchitectAsync(int id, ArchitectUpdateDto architectUpdateDto)
         {
-            throw new NotImplementedException();
+            var existingArchitect = await _architectRepository.GetByIdAsync(id) ?? throw new ArchitectNotFoundException(id);
+
+            ArchitectMappers.ApplyUpdateFromDto(architectUpdateDto, existingArchitect);
+            await _architectRepository.UpdateAsync(existingArchitect);
         }
     }
 }
