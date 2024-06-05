@@ -28,6 +28,7 @@
         {
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IArchitectRepository, ArchitectRepository>();
         }
 
         public static void InjectServices(this IServiceCollection services)
@@ -35,6 +36,7 @@
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IArchitectService, ArchitectService>();
         }
     }
 }

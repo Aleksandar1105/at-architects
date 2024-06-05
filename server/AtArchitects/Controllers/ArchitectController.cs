@@ -58,8 +58,12 @@
 
         [HttpPost]
         [Authorize(Roles = "Admin, Architect")]
-        public async Task<ActionResult> CreateArchitect([FromBody] ArchitectCreateDto architectCreateDto)
+        public async Task<ActionResult> AddArchitect([FromBody] ArchitectCreateDto architectCreateDto)
         {
+            if (!ModelState.IsValid)            
+                return BadRequest(ModelState);
+            
+
             try
             {
                 var architect = await _architectService.AddArchitectAsync(architectCreateDto);
@@ -68,7 +72,7 @@
             }
             catch (Exception ex)
             {
-                _logger.LogError("Failed to create architect");
+                _logger.LogError("Failed to create architect: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -78,7 +82,7 @@
         public async Task<ActionResult> UpdateArchitect(int id, [FromBody] ArchitectUpdateDto architectUpdateDto)
         {
             if (id <= 0 || !ModelState.IsValid)
-                return BadRequest("Invalid architect ID");
+                return BadRequest("Invalid architect ID or model state is not valid");
 
             try
             {

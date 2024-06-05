@@ -3,19 +3,23 @@ using AtArchitects.DTOs.ArchitectDTOs;
 using AtArchitects.Mappers;
 using AtArchitects.Services.Interfaces;
 using AtArchitects.Shared.Exceptions;
+using Microsoft.Extensions.Logging;
 
 namespace AtArchitects.Services.Imlementations
 {
     public class ArchitectService : IArchitectService
     {
         private readonly IArchitectRepository _architectRepository;
-        public ArchitectService(IArchitectRepository architectRepository)
+        private readonly ILogger<ArchitectService> _logger;
+        public ArchitectService(IArchitectRepository architectRepository, ILogger<ArchitectService> logger)
         {
             _architectRepository = architectRepository;
+            _logger = logger;
         }
 
         public async Task<ArchitectDetailsDto> AddArchitectAsync(ArchitectCreateDto architectCreateDto)
         {
+            _logger.LogInformation("Mapping ArchitectCreateDto to Architect model");
             var newArchitect = ArchitectMappers.MapToArchitectModel(architectCreateDto);
             await _architectRepository.AddAsync(newArchitect);
             return ArchitectMappers.MapToArchitectDetailsDto(newArchitect);
@@ -27,7 +31,7 @@ namespace AtArchitects.Services.Imlementations
 
             if (existingArchitect != null)
             {
-                _architectRepository.DeleteByIdAsync(id);
+               await _architectRepository.DeleteByIdAsync(id);
             }
             else
             {

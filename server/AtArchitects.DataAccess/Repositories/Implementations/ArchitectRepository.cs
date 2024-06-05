@@ -5,28 +5,33 @@
     using AtArchitects.Domain.Models;
     using AtArchitects.Shared.Exceptions;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
 
     public class ArchitectRepository : IArchitectRepository
     {
         private readonly AppDbContext _dbContext;
-        public ArchitectRepository(AppDbContext dbContext)
+        private readonly ILogger<ArchitectRepository> _logger;
+        public ArchitectRepository(AppDbContext dbContext, ILogger<ArchitectRepository> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         public async Task AddAsync(Architect entity)
         {
+            _logger.LogInformation("Adding architect with ID {Id}", entity.Id);
             await _dbContext.Architects.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
+            _logger.LogInformation("Architect with ID {Id} added successfully", entity.Id);
         }
 
-        public Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(int id)
         {
-            var architect = _dbContext.Architects.FirstOrDefault(a => a.Id == id)
+            var architect = await _dbContext.Architects.FirstOrDefaultAsync(a => a.Id == id)
                 ?? throw new ArchitectNotFoundException(id);
 
             _dbContext.Architects.Remove(architect);
-            return _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
 
         }
 
